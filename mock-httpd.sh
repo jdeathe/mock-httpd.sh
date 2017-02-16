@@ -37,7 +37,7 @@ function __mock_httpd_usage ()
 
 	Options:
 	  -h, --help                 Show this help and exit.
-	  --cache-control            Set the Cache-Control response header.
+	      --cache-control        Set the Cache-Control response header.
 	  -C, --cert=PATH            Path to a SSL/TLS certicate.
 	  -c, --content=CONTENT      Set the content for the response body. The 
 	                             value must be appropriate for the selected 
@@ -45,7 +45,7 @@ function __mock_httpd_usage ()
 	                             valid HTML to be inserted into the <body>. For 
 	                             raw:text/html the value must include the full 
 	                             HTML response (including headers).
-	  --opts='OPTIONS'           Options for socat; defaults to '-T 1'.
+	      --opts='OPTIONS'       Options for socat; defaults to '-T 1'.
 	  -t, --content-type=TYPE    Set the Content-Type for the response. 
 	                             Valid content-types: 
 	                               - raw:text/html
@@ -299,7 +299,7 @@ function mock_httpd () {
 	# Escape socat special characters.
 	CONTENT="$(
 		sed 's~\([,:!]\)~\\\1~g' \
-		<<<"${CONTENT:-}"
+		<<< "${CONTENT:-}"
 	)"
 
 	if [[ ${PROTOCOL} == "https" ]]; then
@@ -386,7 +386,7 @@ function mock_httpd () {
 
 				CONTENT="$(
 					sed 's~\([,:!]\)~\\\1~g' \
-					<<<"${CONTENT}"
+					<<< "${CONTENT}"
 				)"
 			fi
 
